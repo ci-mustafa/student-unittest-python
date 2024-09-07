@@ -11,4 +11,8 @@ class Student:
 
     @property
     def full_name(self):
-        return f"{self._first_name} {self._last_name}"
+        return f"{self._first_name.capitalize()} {self._last_name.capitalize()}"
+    
+
+student = Student("mustafa", "akbari")
+print(student.full_name)
