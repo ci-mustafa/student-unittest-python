@@ -1,23 +1,31 @@
 import unittest
 from student import Student
+from datetime import timedelta
+
 
 
 
 class TestStudent(unittest.TestCase):
+    def setUp(self):
+        self.student = Student("john", "bobby")
+
     
     def test_student_full_name(self):
-        student = Student("john", "bobby")
-        self.assertEqual(student.full_name, "John Bobby")
+        self.assertEqual(self.student.full_name, "John Bobby")
+
 
     def test_alert_santa_return_True(self):
-        student = Student("mustafa", "akbari")
-        student.alert_santa()
-        self.assertTrue(student.naughty_list)
+        self.student.alert_santa()
+        self.assertTrue(self.student.naughty_list)
     
 
     def test_email(self):
-        student = Student("john", "bobby")
-        self.assertEqual(student.email, "john.bobby@gmail.com")
+        self.assertEqual(self.student.email, "john.bobby@gmail.com")
+    
+    def test_apply_extension(self):
+        old_end_date = self.student.end_date
+        self.student.apply_extension(days=10)
+        self.assertEqual(self.student.end_date, old_end_date + timedelta(days=10))
 
 
 
